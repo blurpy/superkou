@@ -24,7 +24,6 @@ package net.usikkert.superkou.gui;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-
 import net.usikkert.superkou.Constants;
 
 public class GameMenu

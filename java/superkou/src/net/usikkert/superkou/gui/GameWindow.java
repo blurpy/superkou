@@ -25,7 +25,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
-
 import net.usikkert.superkou.*;
 import net.usikkert.superkou.engine.GameLoopThread;
 

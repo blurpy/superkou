@@ -22,7 +22,6 @@
 package net.usikkert.superkou.engine.states;
 
 import java.awt.*;
-
 import net.usikkert.superkou.Tools;
 import net.usikkert.superkou.engine.GameFacade;
 import net.usikkert.superkou.input.ButtonEvent;

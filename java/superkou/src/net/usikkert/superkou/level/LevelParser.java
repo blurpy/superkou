@@ -24,9 +24,7 @@ package net.usikkert.superkou.level;
 import java.awt.Image;
 import java.io.*;
 import java.util.*;
-
-import net.usikkert.superkou.Constants;
-import net.usikkert.superkou.Tools;
+import net.usikkert.superkou.*;
 import net.usikkert.superkou.sprites.*;
 
 public class LevelParser

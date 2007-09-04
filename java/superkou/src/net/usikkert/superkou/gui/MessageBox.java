@@ -23,7 +23,6 @@ package net.usikkert.superkou.gui;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 import net.usikkert.superkou.Constants;
 
 public class MessageBox

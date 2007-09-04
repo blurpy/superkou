@@ -24,9 +24,7 @@ package net.usikkert.superkou.sprites;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
-import net.usikkert.superkou.Status;
-import net.usikkert.superkou.Tools;
+import net.usikkert.superkou.*;
 import net.usikkert.superkou.Status.State;
 import net.usikkert.superkou.sprites.Upgrade.Stage;
 

@@ -22,10 +22,8 @@
 package net.usikkert.superkou.engine.states;
 
 import java.awt.Graphics;
-
 import net.usikkert.superkou.engine.GameFacade;
-import net.usikkert.superkou.gui.GameMenu;
-import net.usikkert.superkou.gui.GameMenuItem;
+import net.usikkert.superkou.gui.*;
 import net.usikkert.superkou.input.ButtonEvent;
 
 public class OptionsMenuState implements State

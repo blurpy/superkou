@@ -22,9 +22,7 @@
 package net.usikkert.superkou.gui;
 
 import java.awt.*;
-
-import net.usikkert.superkou.Constants;
-import net.usikkert.superkou.Tools;
+import net.usikkert.superkou.*;
 import net.usikkert.superkou.engine.GameFacade;
 
 public class GameHUD

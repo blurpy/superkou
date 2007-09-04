@@ -22,13 +22,10 @@
 package net.usikkert.superkou.engine;
 
 import java.awt.image.BufferStrategy;
-
-import net.usikkert.superkou.Settings;
-import net.usikkert.superkou.Status;
+import net.usikkert.superkou.*;
 import net.usikkert.superkou.engine.states.State;
 import net.usikkert.superkou.gui.GameWindow;
-import net.usikkert.superkou.input.GamepadConfig;
-import net.usikkert.superkou.input.GamepadPollThread;
+import net.usikkert.superkou.input.*;
 
 public class GameFacade
 {

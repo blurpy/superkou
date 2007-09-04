@@ -22,7 +22,6 @@
 package net.usikkert.superkou.engine.states;
 
 import java.awt.Graphics;
-
 import net.usikkert.superkou.input.ButtonEvent;
 
 public interface State

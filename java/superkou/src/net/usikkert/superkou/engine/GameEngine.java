@@ -23,7 +23,6 @@ package net.usikkert.superkou.engine;
 
 import java.awt.Graphics;
 import java.util.Stack;
-
 import net.usikkert.superkou.engine.states.State;
 import net.usikkert.superkou.input.ButtonEvent;
 

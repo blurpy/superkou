@@ -22,7 +22,6 @@
 package net.usikkert.superkou.engine.states;
 
 import java.awt.Graphics;
-
 import net.usikkert.superkou.Constants;
 import net.usikkert.superkou.engine.GameFacade;
 import net.usikkert.superkou.gui.MessageBox;

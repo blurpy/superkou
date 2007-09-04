@@ -22,7 +22,6 @@
 package net.usikkert.superkou.sprites;
 
 import java.awt.*;
-
 import net.usikkert.superkou.Tools;
 
 public class Goompa extends Enemy

@@ -23,13 +23,10 @@ package net.usikkert.superkou.engine;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-
-import net.usikkert.superkou.Settings;
-import net.usikkert.superkou.Status;
+import net.usikkert.superkou.*;
 import net.usikkert.superkou.engine.states.*;
 import net.usikkert.superkou.gui.GameWindow;
-import net.usikkert.superkou.input.ButtonHandler;
-import net.usikkert.superkou.input.GamepadPollThread;
+import net.usikkert.superkou.input.*;
 
 public class GameLoopThread extends Thread implements SecondListener
 {

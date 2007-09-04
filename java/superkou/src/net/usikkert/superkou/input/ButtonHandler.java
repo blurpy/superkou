@@ -21,9 +21,7 @@
 
 package net.usikkert.superkou.input;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-
+import java.awt.event.*;
 import net.usikkert.superkou.engine.GameEngine;
 
 public class ButtonHandler implements KeyListener, GamepadListener

@@ -23,9 +23,7 @@ package net.usikkert.superkou.level;
 
 import java.awt.Image;
 import java.util.*;
-
-import net.usikkert.superkou.sprites.Kou;
-import net.usikkert.superkou.sprites.Sprite;
+import net.usikkert.superkou.sprites.*;
 
 public class Level
 {

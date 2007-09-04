@@ -24,7 +24,6 @@ package net.usikkert.superkou.engine.states;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
 import net.usikkert.superkou.*;
 import net.usikkert.superkou.engine.*;
 import net.usikkert.superkou.gui.*;
