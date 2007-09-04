@@ -1,0 +1,18 @@
+$name=Level 2
+$background=graphics/background.png
+$time=100
+
+
+
+                                                                                                                                          o
+                                                                                                                                                                                                                     b
+                                                                                                                                                                                                              A s   oA
+                                                                                                                                                                                                              ECCCCCCC
+                                            oo                                            ooo   ooo                                                       ooo                                                 DBBBBBBB
+                                            EH                                         A        s    A                                                                                                        DBBBBBBB
+         k                                 EFG           o                             AxAxAxAfAxAxAxA                                                                                        xx         A    DBBBBBBB
+oo      xxx                  A            EFBG           A          f      o                                                    A   s   s g s   s    A                                                        DBBBBBBB
+AA                          AAA          EFBBG                                         o o o o o o o o                          ECCCCCCCCCCCCCCCCCCCCH                                                        DBBBBBBB
+AA               g A        AAA         EFBBBG      g          A         A    A                                                 DBBBBBBBBBBBBBBBBBBBBG              o     o            g                      DBBBBBBB
+AA s               Ao   s   AAA  s    oEFBBBBG                 A  s o s  A    A    s          s        s        s               DBBBBBBBBBBBBBBBBBBBBG              A  s  A      A   s     EH ooo s   A       DBBBBBBB
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCFBBBBBG     EH          ECCCCCCCCCH    ECCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCFBBBBBBBBBBBBBBBBBBBBICCCCCCCH      ECCCCCH      ECCCCCCCCCFICCCCCCCCCH       DBBBBBBB

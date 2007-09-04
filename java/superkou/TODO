@@ -1,0 +1,27 @@
+
+TODO
+
+#Bugs:
+* Define collision between Kou and Goompas and Spungys better
+* Increasing rect.y somehow makes beings go below ground
+* Screensaver activates when using the gamepad to play
+
+
+#New features:
+* Sound effects
+* Music
+* Load/save game
+* Level editor
+* Boss enemy
+* "Turtle" enemy
+* Flying enemy
+* Collectable hidden bonus (K-O-U)
+* Invincible powerup
+* Ability to duck and slide down slopes
+* Hidden areas below ground, through pipes
+* World map
+* Profile code
+* Save settings
+* Score state with animation computing score. enemy = 80, level = 1000, cheese = 50, time = 5 pr sec
+* Configure keyboard
+* Image cache in Tools
