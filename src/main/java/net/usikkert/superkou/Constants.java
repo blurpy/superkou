@@ -25,19 +25,19 @@ public interface Constants
 {
 	public static final String AUTHOR_NAME = "Christian Ihle";
 	public static final String AUTHOR_EMAIL = "kontakt@usikkert.net";
-	public static final String AUTHOR_WEB = "http://www.usikkert.net/";
-	
+	public static final String AUTHOR_WEB = "http://superkou.googlecode.com/";
+
 	public static final String APP_NAME = "Super Kou";
-	public static final String APP_VERSION = "0.6.0";
-	public static final String APP_COPYRIGHT_YEARS = "2005-2007";
+	public static final String APP_VERSION = "0.7-SNAPSHOT";
+	public static final String APP_COPYRIGHT_YEARS = "2005-2012";
 	public static final String APP_LICENSE = "GNU GPLv2";
 	public static final String APP_LICENSE_FILE = "COPYING";
 	public static final String APP_README_FILE = "README";
-	
+
 	public static final String FONT_NAME = "Lucida Sans";
-	
+
 	public static final int TILE_SIZE = 32;
-	
+
 	public static final int WINDOW_WIDTH = 640;
 	public static final int WINDOW_HEIGHT = 480;
 }
