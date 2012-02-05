@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,7 +32,7 @@ public class BenchmarkState implements State
 	private Image testImage, testImage2, testImage3;
 	//private GameFacade facade;
 	private BenchmarkHUD hud;
-	
+
 	public BenchmarkState( GameFacade facade )
 	{
 		//this.facade = facade;
@@ -41,7 +41,7 @@ public class BenchmarkState implements State
 		testImage3 = Tools.getImage( "graphics/kou_large_cheer3.png" );
 		hud = new BenchmarkHUD( facade );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "BenchmarkState.cleanup()" );
@@ -64,12 +64,12 @@ public class BenchmarkState implements State
 
 	public void buttonPressed( ButtonEvent e )
 	{
-		
+
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
-		
+
 	}
 
 	public void pause()

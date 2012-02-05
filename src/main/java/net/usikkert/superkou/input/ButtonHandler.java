@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,15 +28,15 @@ public class ButtonHandler implements KeyListener, GamepadListener
 {
 	private GameEngine engine;
 	private GamepadConfig gpConf;
-	
+
 	public ButtonHandler( GameEngine engine, GamepadConfig gpConf )
 	{
 		this.engine = engine;
 		this.gpConf = gpConf;
 	}
-	
+
 	public void keyTyped( KeyEvent e ) {}
-	
+
 	public void keyPressed( KeyEvent e )
 	{
 		engine.buttonPressed( decodeKeyEvent( e ) );
@@ -46,7 +46,7 @@ public class ButtonHandler implements KeyListener, GamepadListener
 	{
 		engine.buttonReleased( decodeKeyEvent( e ) );
 	}
-	
+
 	public void buttonPressed( GamepadEvent e )
 	{
 		engine.buttonPressed( decodeGamepadEvent( e ) );
@@ -56,13 +56,13 @@ public class ButtonHandler implements KeyListener, GamepadListener
 	{
 		engine.buttonReleased( decodeGamepadEvent( e ) );
 	}
-	
+
 	private ButtonEvent decodeKeyEvent( KeyEvent e )
 	{
 		ButtonEvent.Button button = ButtonEvent.Button.UNKNOWN;
-		
+
 		int keyCode = e.getKeyCode();
-		
+
 		switch ( keyCode )
 		{
 			case KeyEvent.VK_LEFT	: button = ButtonEvent.Button.LEFT;
@@ -83,17 +83,17 @@ public class ButtonHandler implements KeyListener, GamepadListener
 									  break;
 			default					: break;
 		}
-		
+
 		return new ButtonEvent( e, button );
 	}
-	
+
 	private ButtonEvent decodeGamepadEvent( GamepadEvent e )
 	{
 		ButtonEvent.Button button = ButtonEvent.Button.UNKNOWN;
-		
+
 		int buttonID = e.getComponentID();
 		float buttonValue = e.getPollData();
-		
+
 		if ( buttonID == gpConf.getLeft().getId() && ( buttonValue == gpConf.getLeft().getValue() || e.getDeadZone() >= Math.abs( buttonValue ) ) )
 			button = ButtonEvent.Button.LEFT;
 		else if ( buttonID == gpConf.getRight().getId() && ( buttonValue == gpConf.getRight().getValue() || e.getDeadZone() >= Math.abs( buttonValue ) ) )
@@ -110,7 +110,7 @@ public class ButtonHandler implements KeyListener, GamepadListener
 			button = ButtonEvent.Button.MENU;
 		else if ( buttonID == gpConf.getAction().getId() && ( buttonValue == gpConf.getAction().getValue() || e.getDeadZone() >= Math.abs( buttonValue ) ) )
 			button = ButtonEvent.Button.ACTION;
-		
+
 		return new ButtonEvent( e, button );
 	}
 }

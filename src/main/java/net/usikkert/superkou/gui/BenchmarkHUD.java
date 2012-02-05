@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,17 +27,17 @@ import net.usikkert.superkou.engine.GameFacade;
 public class BenchmarkHUD
 {
 	private GameFacade facade;
-	
+
 	public BenchmarkHUD( GameFacade facade )
 	{
 		this.facade = facade;
 	}
-	
+
 	public void drawHUD( Graphics graphics )
 	{
 		Graphics2D g = (Graphics2D) graphics;
 		//g.setRenderingHint( RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON );
-		
+
 		g.clearRect( 560, 0, 640, 20 );
 		g.setColor( Color.BLACK );
 		g.drawString( "fps: " + facade.getFpsCounter().getFPS(), 570, 16 );

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,7 +33,7 @@ public class QuestionBox extends Sprite
 	public QuestionBox( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		newBoxAni = new Animation();
 		usedBoxAni = new Animation();
 
@@ -42,7 +42,7 @@ public class QuestionBox extends Sprite
 
 		newBoxAni.addFrame( imageNewBox, 20000 );
 		usedBoxAni.addFrame( imageUsedBox, 20000 );
-		
+
 		setAnimation( newBoxAni );
 		getRectangle().setBounds( xPos, yPos, imageNewBox.getWidth( null ), imageNewBox.getHeight( null ) );
 	}

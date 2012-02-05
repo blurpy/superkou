@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,25 +30,25 @@ import net.usikkert.superkou.sprites.*;
 public class LevelParser
 {
 	private HashMap<Character, Image> tileMap;
-	
+
 	public LevelParser()
 	{
 		tileMap = new HashMap<Character, Image>();
 	}
-	
+
 	public Level loadLevel( String url ) throws LevelException
 	{
 		Level level = new Level();
-		
+
 		try
 		{
 			InputStreamReader fileReader = Tools.getTextStream( url );
 			BufferedReader buffReader = new BufferedReader( fileReader );
-			
+
 			ArrayList<String> content = new ArrayList<String>();
 			int levelHeight = 0;
 			int levelWidth = 0;
-			
+
 			while ( buffReader.ready() )
 			{
 				String line = buffReader.readLine();
@@ -60,75 +60,75 @@ public class LevelParser
 						String bgurl = line.replace( "$background=", "" );
 						level.setBackground( Tools.getImage( bgurl ) );
 					}
-					
+
 					else if ( line.startsWith( "$name" ) )
 					{
 						String name = line.replace( "$name=", "" );
 						level.setName( name );
 					}
-					
+
 					else if ( line.startsWith( "$time" ) )
 					{
 						int time = 0;
-						
+
 						try
 						{
 							time = Integer.parseInt( line.replace( "$time=", "" ) );
 						}
-						
+
 						catch ( NumberFormatException e )
 						{
 							e.printStackTrace();
 						}
-						
+
 						level.setTime( time );
 					}
 				}
-				
+
 				else
 				{
 					if ( line.length() > levelWidth )
 						levelWidth = line.length();
-					
+
 					content.add( line );
 				}
 			}
-			
+
 			levelHeight = content.size();
-			
+
 			buffReader.close();
 			fileReader.close();
-			
+
 			Image[][] tiles = new Image[levelHeight][levelWidth];
-			
+
 			for ( int y = 0; y < levelHeight; y++ )
 			{
 				String line = content.get( y );
-				
+
 				for ( int x = 0; x < line.length(); x++ )
 				{
 					tiles[y][x] = findTile( line.charAt( x ), x, y, level );
 				}
 			}
-			
+
 			level.setTiles( tiles );
 		}
-		
+
 		catch ( IOException e )
 		{
 			throw new LevelException( e.getMessage() );
 		}
-		
+
 		catch ( NullPointerException e )
 		{
 			e.printStackTrace();
-			
+
 			throw new LevelException( e.getMessage() );
 		}
-		
+
 		return level;
 	}
-	
+
 	private Image findTile( char tileChar, int x, int y, Level level )
 	{
 		if ( !tileMap.containsKey( tileChar ) )
@@ -204,7 +204,7 @@ public class LevelParser
 				default  : break;
 			}
 		}
-		
+
 		switch ( tileChar )
 		{
 			case 's' : level.addSprite( new Spungy( Tools.tileToPixel( x ), Tools.tileToPixel( y ) -13 ) );
@@ -223,25 +223,25 @@ public class LevelParser
 					   break;
 			default  : break;
 		}
-		
+
 		return tileMap.get( tileChar );
 	}
-	
+
 	private void addBoxedCheese( int xPos, int yPos, Level level )
 	{
 		Cheese cheese = new Cheese( xPos, yPos - Constants.TILE_SIZE );
 		level.addSprite( cheese );
-		
+
 		QuestionBox qb = new QuestionBox( xPos, yPos );
 		qb.setContents( cheese );
 		level.addSprite( qb );
 	}
-	
+
 	private void addBoxedUpgrade( int xPos, int yPos, Level level )
 	{
 		Upgrade upgrade = new Upgrade( xPos, yPos - Constants.TILE_SIZE );
 		level.addSprite( upgrade );
-		
+
 		QuestionBox qb = new QuestionBox( xPos, yPos );
 		qb.setContents( upgrade );
 		level.addSprite( qb );

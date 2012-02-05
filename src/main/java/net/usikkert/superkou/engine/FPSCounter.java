@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,34 +29,34 @@ public class FPSCounter
 	private int fps, fpsTime, fpsCounter, secCounter;
 	private List<SecondListener> listeners;
 	private boolean pause;
-	
+
 	public FPSCounter()
 	{
 		listeners = new ArrayList<SecondListener>();
 	}
-	
+
 	public void init()
 	{
 		lastTime = System.currentTimeMillis();
 	}
-	
+
 	public void update()
 	{
 		long currentTime = System.currentTimeMillis();
 		fpsTime = Math.round( currentTime - lastTime );
 		secCounter += fpsTime;
 		fpsCounter++;
-		
+
 		if ( secCounter >= 1000 )
 		{
 			secCounter %= 1000;
 			fps = fpsCounter;
 			fpsCounter = 0;
-			
+
 			if ( !pause )
 				fireTick();
 		}
-		
+
 		lastTime = currentTime;
 	}
 
@@ -69,7 +69,7 @@ public class FPSCounter
 	{
 		return fpsTime;
 	}
-	
+
 	private void fireTick()
 	{
 		for ( int i = 0; i < listeners.size(); i++ )
@@ -77,12 +77,12 @@ public class FPSCounter
 			listeners.get( i ).tick();
 		}
 	}
-	
+
 	public void addSecondListener( SecondListener sl )
 	{
 		listeners.add( sl );
 	}
-	
+
 	public void removeSecondListener( SecondListener sl )
 	{
 		listeners.remove( sl );

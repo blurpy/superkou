@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,20 +29,20 @@ public class GameHUD
 {
 	private Image kouImage, cheeseImage;
 	private GameFacade facade;
-	
+
 	public GameHUD( GameFacade facade )
 	{
 		this.facade = facade;
-		
+
 		kouImage = Tools.getImage( "graphics/kou_head_mini.png" );
 		cheeseImage = Tools.getImage( "graphics/cheese3_mini.png" );
 	}
-	
+
 	public void drawHUD( Graphics graphics )
 	{
 		Graphics2D g = (Graphics2D) graphics;
 		//g.setRenderingHint( RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON );
-		
+
 		g.setColor( Color.BLACK );
 		g.setFont( new Font( Constants.FONT_NAME, Font.PLAIN, 16 ) );
 		g.drawImage( kouImage, 10, 2, null );
@@ -51,7 +51,7 @@ public class GameHUD
 		g.drawString( "" + facade.getStatus().getCheese(), 130, 16 );
 		g.drawString( "level: " + facade.getStatus().getLevel(), 540, 16 );
 		g.drawString( "time: " + facade.getStatus().getLevelTime(), 430, 16 );
-		
+
 		if ( facade.getSettings().isFPS() )
 			g.drawString( "fps: " + facade.getFpsCounter().getFPS(), 340, 16 );
 	}

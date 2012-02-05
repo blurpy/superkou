@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,7 +27,7 @@ public class ButtonEvent extends EventObject
 {
 	public enum Button { UNKNOWN, ACTION, MENU, JUMP, SHOOT, LEFT, RIGHT, UP, DOWN };
 	private Button button;
-	
+
 	public ButtonEvent( Object source, Button button )
 	{
 		super( source );

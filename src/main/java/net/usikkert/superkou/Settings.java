@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,28 +24,28 @@ package net.usikkert.superkou;
 public class Settings
 {
 	private boolean fullScreen, fps, capFPS;
-	
+
 	public Settings()
 	{
 		fps = true;
 		capFPS = true;
 	}
-	
+
 	public boolean isFPS()
 	{
 		return fps;
 	}
-	
+
 	public void setFPS( boolean fps )
 	{
 		this.fps = fps;
 	}
-	
+
 	public boolean isFullScreen()
 	{
 		return fullScreen;
 	}
-	
+
 	public void setFullScreen( boolean fullScreen )
 	{
 		this.fullScreen = fullScreen;

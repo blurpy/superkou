@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,12 +30,12 @@ public class LoadGameState implements State
 {
 	private GameFacade facade;
 	private boolean done;
-	
+
 	public LoadGameState( GameFacade facade )
 	{
 		this.facade = facade;
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "LoadGameState.cleanup()" );
@@ -51,7 +51,7 @@ public class LoadGameState implements State
 			g.drawString( "LOADING", Constants.WINDOW_WIDTH / 2 -20, Constants.WINDOW_HEIGHT / 2 );
 			done = true;
 		}
-		
+
 		else
 			facade.changeState( new MainScreenState( facade ) );
 	}
@@ -65,7 +65,7 @@ public class LoadGameState implements State
 	{
 
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -28,34 +28,34 @@ public class GamepadEvent extends EventObject
 {
 	private Component component;
 	private int componentID;
-	
+
 	public GamepadEvent( Component component, int componentID )
 	{
 		super( component );
 		this.component = component;
 		this.componentID = componentID;
 	}
-	
+
 	public float getDeadZone()
 	{
 		return component.getDeadZone();
 	}
-	
+
 	public String getIdentifier()
 	{
 		return component.getIdentifier().getName();
 	}
-	
+
 	public float getPollData()
 	{
 		return component.getPollData();
 	}
-	
+
 	public boolean isAnalog()
 	{
 		return component.isAnalog();
 	}
-	
+
 	public boolean isRelative()
 	{
 		return component.isRelative();

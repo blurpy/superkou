@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@ package net.usikkert.superkou.input;
 public class GamepadConfig
 {
 	private GamepadButton left, right, up, down, action, menu, shoot, jump;
-	
+
 	public GamepadConfig()
 	{
 		left = new GamepadButton( "left", 16, -1.0f );

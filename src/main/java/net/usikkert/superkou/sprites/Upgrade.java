@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,13 +29,13 @@ public class Upgrade extends PowerUp
 	public enum Stage { BIG, CRAZY };
 	private Stage stage;
 	private Animation plantAni, acidAni;
-	
+
 	public Upgrade( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		stage = Stage.BIG;
-		
+
 		plantAni = new Animation();
 		acidAni = new Animation();
 
@@ -44,7 +44,7 @@ public class Upgrade extends PowerUp
 
 		plantAni.addFrame( imagePlant, 20000 );
 		acidAni.addFrame( imageAcid, 20000 );
-		
+
 		setAnimation( plantAni );
 		getRectangle().setBounds( xPos, yPos, imagePlant.getWidth( null ), imagePlant.getHeight( null ) );
 	}
@@ -57,7 +57,7 @@ public class Upgrade extends PowerUp
 	public void setStage( Stage stage )
 	{
 		this.stage = stage;
-		
+
 		if ( stage == Stage.BIG )
 			setAnimation( plantAni );
 		else if ( stage == Stage.CRAZY )

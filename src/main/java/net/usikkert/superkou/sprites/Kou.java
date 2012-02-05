@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -45,12 +45,12 @@ public class Kou extends Being
 	public Kou( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		hitTimer = new Timer();
 		shootTimer = new Timer();
 		fireballs = new ArrayList<Fireball>();
 		readyToShoot = true;
-		
+
 		largeLeftWalkAni = new Animation();
 		largeLeftStandAni = new Animation();
 		largeLeftCheerAni = new Animation();
@@ -176,7 +176,7 @@ public class Kou extends Being
 		crazyLeftCheerAni.addFrame( Tools.transformImage( image2CrazyRightCheer, -1, 1 ), 200 );
 		crazyLeftCheerAni.addFrame( Tools.transformImage( image3CrazyRightCheer, -1, 1 ), 200 );
 		crazyLeftCheerAni.addFrame( Tools.transformImage( image2CrazyRightCheer, -1, 1 ), 200 );
-		
+
 		fireballAni = new Animation();
 
 		Image imageFireball_ur = Tools.getImage( "graphics/fireball_up_right.png" );
@@ -188,10 +188,10 @@ public class Kou extends Being
 		fireballAni.addFrame( imageFireball_dr, 100 );
 		fireballAni.addFrame( imageFireball_dl, 100 );
 		fireballAni.addFrame( imageFireball_ul, 100 );
-		
+
 		setAnimation( smallRightStandAni );
 		setDirection( Direction.RIGHT );
-		
+
 		getRectangle().setBounds( getXPos(), getYPos(), getWidth(), getHeight() );
 	}
 
@@ -204,7 +204,7 @@ public class Kou extends Being
 	{
 		this.victory = victory;
 	}
-	
+
 	public Status getStatus()
 	{
 		return status;
@@ -223,44 +223,44 @@ public class Kou extends Being
 			setGround( false );
 		}
 	}
-	
+
 	public void shoot()
 	{
 		if ( readyToShoot && status.getState() == State.CRAZY )
 		{
 			double xSpeed = 0.35;
-	
+
 			if ( getXSpeed() < 0 || getAnimation() == smallLeftStandAni || getAnimation() == largeLeftStandAni || getAnimation() == crazyLeftStandAni )
 				xSpeed = -0.35;
-	
+
 			Fireball fireball = new Fireball( getXPos() + getWidth() / 2, getYPos() + getHeight() / 2, fireballAni.clone() );
 			fireball.setXSpeed( xSpeed );
 			fireball.setYSpeed( -0.3 );
 			fireballs.add( fireball );
-			
+
 			shootTimer.schedule( new TimerTask()
 			{
 				@Override
 				public void run()
 				{
 					readyToShoot = false;
-					
+
 					try
 					{
 						Thread.sleep( 700 );
 					}
-					
+
 					catch ( InterruptedException e )
 					{
 						e.printStackTrace();
 					}
-					
+
 					readyToShoot = true;
 				}
 			}, 0 );
 		}
 	}
-	
+
 	public List<Fireball> getFireballs()
 	{
 		return fireballs;
@@ -283,20 +283,20 @@ public class Kou extends Being
 				// So if Kou turns around after looking into a wall, his back will be inside it.
 				if ( getDirection() == Direction.LEFT )
 					setXPos( getXPos() + 7 );
-				
+
 				setAnimation( smallRightWalkAni );
 				setDirection( Direction.RIGHT );
 			}
-			
+
 			else if ( getXSpeed() < 0 )
 			{
 				if ( getDirection() == Direction.RIGHT )
 					setXPos( getXPos() - 7 );
-				
+
 				setAnimation( smallLeftWalkAni );
 				setDirection( Direction.LEFT );
 			}
-			
+
 			else
 			{
 				if ( isAlive() == false )
@@ -306,7 +306,7 @@ public class Kou extends Being
 					else
 						setAnimation( smallLeftDeadAni );
 				}
-		
+
 				else if ( victory )
 				{
 					if ( getDirection() == Direction.RIGHT )
@@ -314,7 +314,7 @@ public class Kou extends Being
 					else
 						setAnimation( smallLeftCheerAni );
 				}
-				
+
 				else
 				{
 					if ( getDirection() == Direction.RIGHT )
@@ -323,7 +323,7 @@ public class Kou extends Being
 						setAnimation( smallLeftStandAni );
 				}
 			}
-			
+
 			if ( getDirection() == Direction.RIGHT )
 				getRectangle().setBounds( getXPos() +5, getYPos(), getWidth() -20, getHeight() );
 			else
@@ -337,13 +337,13 @@ public class Kou extends Being
 				setAnimation( largeRightWalkAni );
 				setDirection( Direction.RIGHT );
 			}
-			
+
 			else if ( getXSpeed() < 0 )
 			{
 				setAnimation( largeLeftWalkAni );
 				setDirection( Direction.LEFT );
 			}
-			
+
 			else
 			{
 				if ( isAlive() == false )
@@ -361,7 +361,7 @@ public class Kou extends Being
 					else
 						setAnimation( largeLeftCheerAni );
 				}
-				
+
 				else
 				{
 					if ( getDirection() == Direction.RIGHT )
@@ -370,7 +370,7 @@ public class Kou extends Being
 						setAnimation( largeLeftStandAni );
 				}
 			}
-			
+
 			if ( getDirection() == Direction.RIGHT )
 				getRectangle().setBounds( getXPos() +14, getYPos(), getWidth() -29, getHeight() );
 			else
@@ -384,13 +384,13 @@ public class Kou extends Being
 				setAnimation( crazyRightWalkAni );
 				setDirection( Direction.RIGHT );
 			}
-			
+
 			else if ( getXSpeed() < 0 )
 			{
 				setAnimation( crazyLeftWalkAni );
 				setDirection( Direction.LEFT );
 			}
-			
+
 			else
 			{
 				if ( isAlive() == false )
@@ -408,7 +408,7 @@ public class Kou extends Being
 					else
 						setAnimation( crazyLeftCheerAni );
 				}
-				
+
 				else
 				{
 					if ( getDirection() == Direction.RIGHT )
@@ -417,51 +417,51 @@ public class Kou extends Being
 						setAnimation( crazyLeftStandAni );
 				}
 			}
-			
+
 			if ( getDirection() == Direction.RIGHT )
 				getRectangle().setBounds( getXPos() +14, getYPos(), getWidth() -29, getHeight() );
 			else
 				getRectangle().setBounds( getXPos() +14, getYPos(), getWidth() -29, getHeight() );
 		}
-		
+
 		super.update( fpsTime );
 	}
-	
+
 	@Override
 	public void collidesWith( Cheese cheese )
 	{
 		cheese.setVisible( false );
 		cheese.setRemovable( true );
-		
+
 		if ( status.getCheese() == 49 )
 		{
 			status.setCheese( 0 );
 			status.incLives();
 		}
-		
+
 		else
 			status.incCheese();
 	}
-	
+
 	@Override
 	public void collidesWith( QuestionBox qb )
 	{
 		if ( !qb.isHit() )
 		{
 			Sprite contents = qb.getContents();
-			
+
 			if ( contents instanceof Upgrade )
 			{
 				Upgrade up = (Upgrade) contents;
-				
+
 				if ( status.getState() != State.SMALL )
 					up.setStage( Upgrade.Stage.CRAZY );
 			}
-			
+
 			qb.setHit();
 		}
 	}
-	
+
 	@Override
 	public void collidesWith( Upgrade upgrade )
 	{
@@ -472,7 +472,7 @@ public class Kou extends Being
 			status.setState( State.LARGE );
 		else if ( upgrade.getStage() == Stage.CRAZY )
 			status.setState( State.CRAZY );
-		
+
 		update( 0 );
 		setYPos( upgrade.getYPos() + upgrade.getHeight() - getHeight() -5 );
 	}
@@ -494,23 +494,23 @@ public class Kou extends Being
 		if ( goompa.isAlive() )
 		{
 			Rectangle crashRect = getRectangle().intersection( goompa.getRectangle() );
-			
+
 			boolean badHit = false;
-			
+
 			// Check if Kou hit below a Goompa
 			if ( crashRect.getWidth() > 10 )
 			{
 				if ( getYPos() == crashRect.getMinY() )
 					badHit = true;
 			}
-	
+
 			// Or hit the side
 			else if ( crashRect.getHeight() > 10 )
 				badHit = true;
-			
+
 			if ( badHit )
 				checkHealth();
-			
+
 			else
 			{
 				setYPos( goompa.getYPos() - getHeight() );
@@ -527,16 +527,16 @@ public class Kou extends Being
 		if ( spungy.isAlive() )
 		{
 			Rectangle crashRect = getRectangle().intersection( spungy.getRectangle() );
-			
+
 			boolean badHit = false;
-			
+
 			// Check if Kou hit the side of a Spungy
 			if ( crashRect.getWidth() < 5 && crashRect.getHeight() > 10 )
 				badHit = true;
-			
+
 			if ( badHit )
 				checkHealth();
-			
+
 			else
 			{
 				setYPos( spungy.getYPos() - getHeight() );
@@ -546,7 +546,7 @@ public class Kou extends Being
 			}
 		}
 	}
-	
+
 	private void checkHealth()
 	{
 		if ( !invinsible && !victory )
@@ -555,31 +555,31 @@ public class Kou extends Being
 			{
 				die();
 			}
-			
+
 			else
 			{
 				if ( status.getState() == State.CRAZY )
 					status.setState( State.LARGE );
 				else
 					status.setState( State.SMALL );
-				
+
 				hitTimer.schedule( new TimerTask()
 				{
 					@Override
 					public void run()
 					{
 						invinsible = true;
-						
+
 						try
 						{
 							Thread.sleep( 2000 );
 						}
-						
+
 						catch ( InterruptedException e )
 						{
 							e.printStackTrace();
 						}
-						
+
 						invinsible = false;
 					}
 				}, 0 );

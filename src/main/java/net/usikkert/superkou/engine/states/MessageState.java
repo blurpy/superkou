@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,17 +32,17 @@ public class MessageState implements State
 	private MessageBox msgBox;
 	private String msg;
 	private int fontSize, offsetY;
-	
+
 	public MessageState( GameFacade facade, String msg, int fontSize, int offsetY )
 	{
 		this.facade = facade;
 		this.msg = msg;
 		this.fontSize = fontSize;
 		this.offsetY = offsetY;
-		
+
 		msgBox = new MessageBox();
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "MessageState.cleanup()" );

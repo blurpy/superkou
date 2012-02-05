@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,7 +33,7 @@ public class GameFinishedState implements State
 	private GameFacade facade;
 	private MessageBox msgBox;
 	private int fontSize;
-	
+
 	public GameFinishedState( GameFacade facade )
 	{
 		this.facade = facade;
@@ -41,7 +41,7 @@ public class GameFinishedState implements State
 		msgBox = new MessageBox();
 		gameFinishedImage = Tools.getImage( "graphics/congrats.png" );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "GameFinishedState.cleanup()" );
@@ -65,7 +65,7 @@ public class GameFinishedState implements State
 			facade.changeState( new MainScreenState( facade ) );
 		}
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 

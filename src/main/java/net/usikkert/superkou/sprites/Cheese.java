@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,18 +29,18 @@ public class Cheese extends Sprite
 	public Cheese( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		Animation cheeseAni = new Animation();
-		
+
 		Image image1 = Tools.getImage( "graphics/cheese1.png" );
 		Image image2 = Tools.getImage( "graphics/cheese2.png" );
 		Image image3 = Tools.getImage( "graphics/cheese3.png" );
-		
+
 		cheeseAni.addFrame( image1, 200 );
 		cheeseAni.addFrame( image2, 300 );
 		cheeseAni.addFrame( image3, 200 );
 		cheeseAni.addFrame( image2, 300 );
-		
+
 		setAnimation( cheeseAni );
 		getRectangle().setBounds( xPos, yPos, image1.getWidth( null ), image1.getHeight( null ) );
 	}

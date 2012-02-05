@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,17 +29,17 @@ import net.usikkert.superkou.input.ButtonEvent;
 public class GameEngine
 {
 	private Stack<State> states;
-	
+
 	public GameEngine()
 	{
 		states = new Stack<State>();
 	}
-	
+
 	public void init()
 	{
-		
+
 	}
-	
+
 	public void cleanup()
 	{
 		while ( !states.empty() )
@@ -48,24 +48,24 @@ public class GameEngine
 			states.pop();
 		}
 	}
-	
+
 	public void buttonPressed( ButtonEvent e )
 	{
 		if ( !states.empty() )
 			states.lastElement().buttonPressed( e );
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 		if ( !states.empty() )
 			states.lastElement().buttonReleased( e );
 	}
-	
+
 	public void update( long fpsTime )
 	{
 		if ( states.size() == 1 )
 			states.lastElement().update( fpsTime );
-		
+
 		else if ( states.size() > 1 )
 		{
 			for ( int i = 0; i < states.size(); i++ )
@@ -74,12 +74,12 @@ public class GameEngine
 			}
 		}
 	}
-	
+
 	public void draw( Graphics g )
 	{
 		if ( states.size() == 1 )
 			states.lastElement().draw( g );
-		
+
 		else if ( states.size() > 1 )
 		{
 			for ( int i = 0; i < states.size(); i++ )
@@ -88,7 +88,7 @@ public class GameEngine
 			}
 		}
 	}
-	
+
 	public void changeState( State newState )
 	{
 		while ( !states.empty() )
@@ -96,21 +96,21 @@ public class GameEngine
 			states.lastElement().cleanup();
 			states.pop();
 		}
-		
+
 		states.push( newState );
 		newState.init();
 	}
-	
+
 	public void pushState( State newState )
 	{
 		if ( !states.empty() )
 			states.lastElement().pause();
-		
-		
+
+
 		states.push( newState );
 		newState.init();
 	}
-	
+
 	public void popState()
 	{
 		if ( !states.empty() )
@@ -118,7 +118,7 @@ public class GameEngine
 			states.lastElement().cleanup();
 			states.pop();
 		}
-		
+
 		if ( !states.empty() )
 			states.lastElement().resume();
 	}

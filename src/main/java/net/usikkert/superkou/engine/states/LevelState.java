@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -41,7 +41,7 @@ public class LevelState implements State, SecondListener
 	private boolean ready, pause, updateReady;
 	private GameHUD hud;
 	private MessageBox msgBox;
-	
+
 	public LevelState( GameFacade facade )
 	{
 		this.facade = facade;
@@ -49,20 +49,20 @@ public class LevelState implements State, SecondListener
 		hud = new GameHUD( facade );
 		msgBox = new MessageBox();
 	}
-	
+
 	public void init()
 	{
 		System.out.println( "LevelState.init()" );
-		
+
 		loadLevel();
 	}
-	
+
 	private void loadLevel()
 	{
 		facade.getFpsCounter().removeSecondListener( this );
 		ready = false;
 		updateReady = false;
-		
+
 		try
 		{
 			level = parser.loadLevel( "levels/level" + facade.getStatus().getNextLevel() + ".txt" );
@@ -74,21 +74,21 @@ public class LevelState implements State, SecondListener
 			kou.update( 0 );
 			facade.getStatus().setLevelTime( level.getTime() );
 			facade.getStatus().setLevel( facade.getStatus().getNextLevel() );
-			
+
 			ready = true;
 			facade.getFpsCounter().addSecondListener( this );
 		}
-		
+
 		catch ( LevelException e )
 		{
 			e.printStackTrace();
-			
+
 			if ( facade.getStatus().getNextLevel() == 1 )
 			{
 				facade.getStatus().resetStatus();
 				facade.changeState( new ErrorState( facade, "Uh oh. No maps found :(" ) );
 			}
-				
+
 			else
 			{
 				facade.getStatus().resetStatus();
@@ -96,11 +96,11 @@ public class LevelState implements State, SecondListener
 			}
 		}
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "LevelState.cleanup()" );
-		
+
 		ready = false;
 		updateReady = false;
 		facade.getFpsCounter().removeSecondListener( this );
@@ -112,7 +112,7 @@ public class LevelState implements State, SecondListener
 		{
 			int offset = 0;
 			int levelWidthPix = Tools.tileToPixel( level.getWidth() );
-			
+
 			// Keep Kou at the center of the screen, if Kou is not too close to the edges
 			if ( kou.getXPos() > Constants.WINDOW_WIDTH / 2 )
 			{
@@ -121,61 +121,61 @@ public class LevelState implements State, SecondListener
 				else
 					offset = kou.getXPos() - Constants.WINDOW_WIDTH / 2;
 			}
-			
+
 			// Scroll the background
 			double bgStartPos = (double) levelImage.getWidth( null ) / ( (double) levelWidthPix
 					- Constants.WINDOW_WIDTH ) * (double) offset / 2.0;
 			g.drawImage( levelImage, (int) bgStartPos * -1, 0, null );
-			
+
 			// Locate the visible tiles
 			int startYTile = 0;
 			int startXTile = Tools.pixelToTile(  kou.getXPos() - ( kou.getXPos() - offset ) );
 			int stopXTile = Math.min( startXTile + Tools.pixelToTile( Constants.WINDOW_WIDTH ) +1,
 					Tools.pixelToTile( levelWidthPix ) );
-			
+
 			// Draw visible tiles
 			for ( int y = startYTile; y < level.getHeight(); y++ )
 			{
 				for ( int x = startXTile; x < stopXTile; x++ )
 				{
 					Image tile = level.getTile( y, x );
-					
+
 					if ( tile != null )
 						g.drawImage( tile, Tools.tileToPixel( x ) - offset, Tools.tileToPixel( y ),
 								Constants.TILE_SIZE, Constants.TILE_SIZE, null );
-					
+
 					//g.setColor( Color.LIGHT_GRAY );
 					//g.drawRect( Tools.tileToPixel( x ) - offset, Tools.tileToPixel( y ), Constants.TILE_SIZE, Constants.TILE_SIZE );
 				}
 			}
-			
+
 			// Draw sprites
 			Iterator<Sprite> sprites = level.getSprites();
-			
+
 			while ( sprites.hasNext() )
 			{
 				Sprite sprite = sprites.next();
-				
+
 				if ( sprite.isVisible() )
 					g.drawImage( sprite.getAnimation().getFrame(), sprite.getXPos() -offset, sprite.getYPos(), null );
-				
+
 				//g.drawRect( sprite.getRectangle().x -offset, sprite.getRectangle().y, sprite.getRectangle().width, sprite.getRectangle().height );
 			}
-			
+
 			// Stop Kou from moving beyond the edges of the level
 			if ( kou.getXPos() < 0 )
 				kou.setXPos( 0 );
 			else if ( kou.getXPos() > levelWidthPix - kou.getWidth() )
 				kou.setXPos( levelWidthPix - kou.getWidth() );
-			
+
 			g.drawImage( kou.getAnimation().getFrame(), kou.getXPos() -offset, kou.getYPos(), null );
 			//g.drawRect( kou.getRectangle().x -offset, kou.getRectangle().y, kou.getRectangle().width, kou.getRectangle().height );
-			
+
 			if ( kou.isVictory() && !pause )
 			{
 				msgBox.drawMessage( g, "Congratulations!\nYou found a banana!", 30, 0, 0 );
 			}
-			
+
 			else if ( !kou.isAlive() && !pause )
 			{
 				if ( facade.getStatus().getLevelTime() == 0 )
@@ -183,7 +183,7 @@ public class LevelState implements State, SecondListener
 				else
 					msgBox.drawMessage( g, "Darn it! You died :(", 30, 0, 0 );
 			}
-			
+
 			hud.drawHUD( g );
 		}
 	}
@@ -195,66 +195,66 @@ public class LevelState implements State, SecondListener
 		{
 			updateSpriteList();
 			checkTileCollision( kou, fpsTime );
-			
+
 			if ( kou.isAlive() && !kou.isVictory() )
 				checkSpriteCollision( kou );
-			
+
 			kou.update( fpsTime );
-			
+
 			Iterator<Sprite> sprites = level.getSprites();
-			
+
 			while ( sprites.hasNext() )
 			{
 				Sprite sprite = sprites.next();
-				
+
 				if ( sprite.isVisible() )
 				{
 					if ( sprite instanceof Being )
 					{
 						Being being = (Being) sprite;
 						checkTileCollision( being, fpsTime );
-						
+
 						if ( being.isAlive() )
 							checkSpriteCollision( being );
 					}
-					
+
 					sprite.update( fpsTime );
 				}
 			}
 		}
-		
+
 		// Hope this will stabilize the fps before updating the positions
 		else if ( !pause && ready && !updateReady )
 		{
 			updateReady = true;
 		}
 	}
-	
+
 	public void buttonPressed( ButtonEvent e )
 	{
 		if ( e.getButton() == ButtonEvent.Button.MENU )
 		{
 			facade.pushState( new LevelMenuState( facade ) );
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.LEFT )
 		{
 			if ( kou.isAlive() && !kou.isVictory() )
 				kou.setXSpeed( -0.3 );
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.RIGHT )
 		{
 			if ( kou.isAlive() && !kou.isVictory() )
 				kou.setXSpeed( 0.3 );
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.JUMP )
 		{
 			if ( kou.isAlive() && !kou.isVictory() )
 				kou.jump( false );
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.ACTION )
 		{
 			if ( !kou.isAlive() )
@@ -264,22 +264,22 @@ public class LevelState implements State, SecondListener
 					facade.getStatus().resetStatus();
 					facade.changeState( new GameOverState( facade ) );
 				}
-				
+
 				else
 				{
 					facade.getStatus().decLives();
 					facade.getStatus().setState( Status.State.SMALL );
 					loadLevel();
 				}
-				
+
 			}
-			
+
 			else if ( kou.isVictory() )
 			{
 				loadLevel();
 			}
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.SHOOT )
 		{
 			if ( kou.isAlive() && !kou.isVictory() )
@@ -288,7 +288,7 @@ public class LevelState implements State, SecondListener
 			}
 		}
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 		if ( e.getButton() == ButtonEvent.Button.LEFT || e.getButton() == ButtonEvent.Button.RIGHT )
@@ -300,47 +300,47 @@ public class LevelState implements State, SecondListener
 	public void pause()
 	{
 		System.out.println( "LevelState.pause()" );
-		
+
 		pause = true;
 	}
 
 	public void resume()
 	{
 		System.out.println( "LevelState.resume()" );
-		
+
 		pause = false;
 	}
-	
+
 	private void updateSpriteList()
 	{
 		ListIterator<Sprite> sprites = level.getSprites();
 		List<Fireball> fireballs = kou.getFireballs();
-		
+
 		if ( fireballs.size() > 0 )
 		{
 			Iterator<Fireball> it = fireballs.iterator();
-			
+
 			while ( it.hasNext() )
 			{
 				sprites.add( it.next() );
 			}
-			
+
 			fireballs.clear();
 		}
-		
+
 		while ( sprites.hasNext() )
 		{
 			Sprite sprite = sprites.next();
-			
+
 			if ( sprite.isRemovable() )
 				sprites.remove();
 		}
 	}
-	
+
 	private void checkSpriteCollision( Being being )
 	{
 		Iterator<Sprite> sprites = level.getSprites();
-		
+
 		while ( sprites.hasNext() )
 		{
 			Sprite sprite = sprites.next();
@@ -349,39 +349,39 @@ public class LevelState implements State, SecondListener
 			{
 				Rectangle beingRect = being.getRectangle();
 				Rectangle spriteRect = sprite.getRectangle();
-				
+
 				if ( beingRect.intersects( spriteRect ) )
 				{
 					if ( sprite instanceof QuestionBox )
 					{
 						being.collidesWith( (QuestionBox) sprite );
 					}
-					
+
 					else if ( sprite instanceof Cheese )
 					{
 						being.collidesWith( (Cheese) sprite );
 					}
-					
+
 					else if ( sprite instanceof Upgrade )
 					{
 						being.collidesWith( (Upgrade) sprite );
 					}
-					
+
 					else if ( sprite instanceof Spungy )
 					{
 						being.collidesWith( (Spungy) sprite );
 					}
-					
+
 					else if ( sprite instanceof Goompa )
 					{
 						being.collidesWith( (Goompa) sprite );
 					}
-					
+
 					else if ( sprite instanceof Fireball )
 					{
 						being.collidesWith( (Fireball) sprite );
 					}
-					
+
 					else if ( sprite instanceof Banana )
 					{
 						being.collidesWith( (Banana) sprite );
@@ -390,13 +390,13 @@ public class LevelState implements State, SecondListener
 			}
 		}
 	}
-	
+
 	private void checkTileCollision( Being being, long fpsTime )
 	{
 		// Apply gravity to beings
 		if ( being.isGravity() )
 			being.setYSpeed( being.getYSpeed() + 0.003 * fpsTime );
-		
+
 		Rectangle rect = being.getRectangle();
 
 		// Move to the right
@@ -417,7 +417,7 @@ public class LevelState implements State, SecondListener
 					break;
 				}
 			}
-			
+
 			int offset = rect.x - being.getXPos();
 			newXPos -= offset;
 
@@ -449,7 +449,7 @@ public class LevelState implements State, SecondListener
 					break;
 				}
 			}
-			
+
 			int offset = rect.x - being.getXPos();
 			newXPos -= offset;
 
@@ -475,7 +475,7 @@ public class LevelState implements State, SecondListener
 			boolean stop = false;
 			stopX++;
 			stopY++;
-			
+
 			for ( int y = startY; y < stopY; y++ )
 			{
 				for ( int x = startX; x < stopX; x++ )
@@ -487,7 +487,7 @@ public class LevelState implements State, SecondListener
 						break;
 					}
 				}
-				
+
 				if ( stop )
 					break;
 			}
@@ -501,7 +501,7 @@ public class LevelState implements State, SecondListener
 				being.setYPos( Tools.tileToPixel( colTile ) - rect.height -1 );
 				being.collideY();
 			}
-			
+
 			if ( rect.y + rect.height > Tools.tileToPixel( level.getHeight() ) )
 			{
 				being.die();
@@ -522,7 +522,7 @@ public class LevelState implements State, SecondListener
 			boolean stop = false;
 			stopX++;
 			stopY++;
-			
+
 			for ( int y = startY; y < stopY; y++ )
 			{
 				for ( int x = startX; x < stopX; x++ )
@@ -534,11 +534,11 @@ public class LevelState implements State, SecondListener
 						break;
 					}
 				}
-				
+
 				if ( stop )
 					break;
 			}
-			
+
 
 			if ( stop == false )
 				being.setYPos( newYPos );
@@ -556,10 +556,10 @@ public class LevelState implements State, SecondListener
 		if ( !pause && ready && !kou.isVictory() && kou.isAlive() )
 		{
 			int time = facade.getStatus().getLevelTime();
-			
+
 			if ( time > 0 )
 				facade.getStatus().decLevelTime();
-			
+
 			else
 				kou.die();
 		}

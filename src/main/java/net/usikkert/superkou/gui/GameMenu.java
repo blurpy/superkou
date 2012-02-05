@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,38 +37,38 @@ public class GameMenu
 		this.name = name;
 		this.fontSize = fontSize;
 		this.offsetY = offsetY;
-		
+
 		itemList = new ArrayList<GameMenuItem>();
 	}
-	
+
 	private void calculateVisibleItems()
 	{
 		visibleStartItemPos = selectedItemPos -2;
 		visibleStopItemPos = selectedItemPos +2;
-		
+
 		if ( visibleStartItemPos < 0 )
 		{
 			int offset = visibleStartItemPos * -1;
 			visibleStartItemPos += offset;
 			visibleStopItemPos += offset;
 		}
-		
+
 		else if ( visibleStopItemPos > itemList.size() -1 )
 		{
 			int offset = visibleStopItemPos - itemList.size() +1;
 			visibleStartItemPos -= offset;
 			visibleStopItemPos -= offset;
 		}
-		
+
 		visibleStopItemPos++;
-		
+
 		if ( visibleStopItemPos > itemList.size() )
 			visibleStopItemPos = itemList.size();
-		
+
 		if ( visibleStartItemPos < 0 )
 			visibleStartItemPos = 0;
 	}
-	
+
 	public void selectUp()
 	{
 		if ( selectedItemPos > 0 )
@@ -79,7 +79,7 @@ public class GameMenu
 			calculateVisibleItems();
 		}
 	}
-	
+
 	public void selectDown()
 	{
 		if ( selectedItemPos < itemList.size() -1 )
@@ -90,7 +90,7 @@ public class GameMenu
 			calculateVisibleItems();
 		}
 	}
-	
+
 	public void addGameMenuItem( GameMenuItem gmi )
 	{
 		itemList.add( gmi );
@@ -100,54 +100,54 @@ public class GameMenu
 	public void drawMenu( Graphics graphics )
 	{
 		Graphics2D g = (Graphics2D) graphics;
-		
+
 		//g.setRenderingHint( RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON );
 		g.setFont( new Font( Constants.FONT_NAME, Font.PLAIN, fontSize ) );
 		FontMetrics fm = g.getFontMetrics();
-		
+
 		int totWidth = 0;
 		int newAscent = (int) ( fm.getAscent() * 1.2 );
 		int totHeight = ( newAscent + fm.getDescent() ) * ( visibleStopItemPos - visibleStartItemPos ) -5;
-		
+
 		for ( int i = visibleStartItemPos; i < visibleStopItemPos; i++ )
 		{
 			int tmp = fm.stringWidth( itemList.get( i ).getName() );
-			
+
 			if ( tmp > totWidth )
 				totWidth = tmp;
 		}
-		
+
 		int startXPos = ( Constants.WINDOW_WIDTH / 2 ) - ( ( totWidth + 30 ) / 2 );
 		int startYPos = Constants.WINDOW_HEIGHT / 2 - ( ( totHeight + 10 ) / 2 ) + offsetY;
-		
+
 		g.setColor( new Color( 240, 240, 240 ) );
 		g.fillRoundRect( startXPos, startYPos, totWidth + 30, totHeight + 10, 10, 10 );
 		g.setColor( new Color( 60, 120, 171 ) );
 		g.drawRoundRect( startXPos, startYPos, totWidth + 30, totHeight + 10, 10, 10 );
-		
+
 		int widthPos = startXPos + 15;
 		int heightPos = startYPos + 1 + newAscent;
-		
+
 		for ( int i = visibleStartItemPos; i < visibleStopItemPos; i++ )
 		{
 			GameMenuItem gmi = itemList.get( i );
-			
+
 			if ( gmi.isSelected() )
 				g.setColor( Color.BLACK );
 			else
 				g.setColor( Color.GRAY );
-			
+
 			g.drawString( gmi.getName(), widthPos, heightPos );
-			
+
 			if ( i < visibleStopItemPos -1 )
 			{
 				g.setColor( new Color( 60, 120, 171 ) );
 				g.drawLine( startXPos +15, heightPos + fm.getDescent() +2, totWidth + startXPos +15, heightPos + fm.getDescent() +2 );
 			}
-			
+
 			heightPos += ( newAscent + fm.getDescent() );
 		}
-		
+
 		if ( visibleStartItemPos > 0 )
 		{
 			int polXPos = startXPos + totWidth / 2;
@@ -159,7 +159,7 @@ public class GameMenu
 			g.setColor( Color.BLACK );
 			g.fillPolygon( polUp );
 		}
-		
+
 		if ( visibleStopItemPos < itemList.size() )
 		{
 			int polXPos = startXPos + totWidth / 2;
@@ -172,12 +172,12 @@ public class GameMenu
 			g.fillPolygon( polDown );
 		}
 	}
-	
+
 	public String getSelectedMenuItemName()
 	{
 		return itemList.get( selectedItemPos ).getName();
 	}
-	
+
 	public GameMenuItem getSelectedMenuItem()
 	{
 		return itemList.get( selectedItemPos );

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,21 +33,21 @@ public class MainMenuState implements State
 	private GameFacade facade;
 	private boolean pause;
 	private int fontSize, offsetY;
-	
+
 	public MainMenuState( GameFacade facade )
 	{
 		this.facade = facade;
 		fontSize = 28;
 		offsetY = 100;
 		mainMenu = new GameMenu( "Main menu", fontSize, offsetY );
-		
+
 		mainMenu.addGameMenuItem( new GameMenuItem( "New game", true ) );
 		mainMenu.addGameMenuItem( new GameMenuItem( "Options", false ) );
 		mainMenu.addGameMenuItem( new GameMenuItem( "How to play", false ) );
 		mainMenu.addGameMenuItem( new GameMenuItem( "About", false ) );
 		mainMenu.addGameMenuItem( new GameMenuItem( "Quit", false ) );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "MainMenuState.cleanup()" );
@@ -70,33 +70,33 @@ public class MainMenuState implements State
 		{
 			mainMenu.selectUp();
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.DOWN )
 		{
 			mainMenu.selectDown();
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.ACTION )
 		{
 			String item = mainMenu.getSelectedMenuItemName();
-			
+
 			if ( item.equals( "New game" ) )
 				facade.pushState( new NewGameState( facade, offsetY ) );
-			
+
 			else if ( item.equals( "Options" ) )
 				facade.pushState( new OptionsMenuState( facade, fontSize, offsetY ) );
-			
+
 			else if ( item.equals( "How to play" ) )
 				facade.pushState( new MessageState( facade, getHowToPlayMessage(), 24, offsetY ) );
-			
+
 			else if ( item.equals( "About" ) )
 				facade.pushState( new MessageState( facade, getAboutMessage(), 24, offsetY ) );
-			
+
 			else if ( item.equals( "Quit" ) )
 				System.exit( 0 );
 		}
 	}
-	
+
 	private String getAboutMessage()
 	{
 		String about = Constants.APP_NAME + " v" + Constants.APP_VERSION;
@@ -105,20 +105,20 @@ public class MainMenuState implements State
 		about += "\n" + Constants.AUTHOR_WEB;
 		about += "\n\nSource code available under the";
 		about += "\n" + Constants.APP_LICENSE + ". See " + Constants.APP_README_FILE + " for details.";
-		
+
 		return about;
 	}
-	
+
 	private String getHowToPlayMessage()
 	{
 		String howto = "Menu: escape";
 		howto += "\nMove: arrow keys";
 		howto += "\nJump: space";
 		howto += "\nShoot: control";
-		
+
 		return howto;
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 
@@ -127,14 +127,14 @@ public class MainMenuState implements State
 	public void pause()
 	{
 		System.out.println( "MainMenuState.pause()" );
-		
+
 		pause = true;
 	}
 
 	public void resume()
 	{
 		System.out.println( "MainMenuState.resume()" );
-		
+
 		pause = false;
 	}
 

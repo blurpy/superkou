@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,18 +33,18 @@ public class MainScreenState implements State
 	private GameFacade facade;
 	private Spungy spungy;
 	private boolean ready, updateReady;
-	
+
 	public MainScreenState( GameFacade facade )
 	{
 		this.facade = facade;
 		screenImage = Tools.getImage( "graphics/superkou_bg.png" );
 		spungy = new Spungy( 1, 10 );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "MainScreenState.cleanup()" );
-		
+
 		ready = false;
 		updateReady = false;
 	}
@@ -61,10 +61,10 @@ public class MainScreenState implements State
 	public void init()
 	{
 		System.out.println( "MainScreenState.init()" );
-		
+
 		spungy.setYPos( Constants.WINDOW_HEIGHT - spungy.getHeight() );
 		facade.pushState( new MainMenuState( facade ) );
-		
+
 		ready = true;
 		updateReady = false;
 	}
@@ -84,15 +84,15 @@ public class MainScreenState implements State
 		if ( ready && updateReady)
 		{
 			int newXPos = (int) ( spungy.getXPos() + Math.round( spungy.getXSpeed() * fpsTime ) );
-			
+
 			if ( newXPos > Constants.WINDOW_WIDTH - spungy.getWidth() || newXPos < 0 )
 				spungy.collideX();
 			else
 				spungy.setXPos( newXPos );
-			
+
 			spungy.update( fpsTime );
 		}
-		
+
 		else if ( ready && !updateReady )
 		{
 			updateReady = true;
@@ -103,7 +103,7 @@ public class MainScreenState implements State
 	{
 
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,36 +32,36 @@ public class Tools
 	{
 		return new ImageIcon( Tools.class.getResource( "/" + url ) ).getImage();
 	}
-	
+
 	public static InputStreamReader getTextStream( String url )
 	{
 		return new InputStreamReader( Tools.class.getResourceAsStream( "/" + url ) );
 	}
-	
+
 	public static int pixelToTile( int pixels )
 	{
 		return pixels / Constants.TILE_SIZE;
 	}
-	
+
 	public static int tileToPixel( int tiles )
 	{
 		return tiles * Constants.TILE_SIZE;
 	}
-	
+
 	public static Image transformImage( Image image, double x, double y )
 	{
 		GraphicsConfiguration gc = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDefaultConfiguration();
-		
+
 		AffineTransform transform = new AffineTransform();
 		transform.scale( x, y );
 		transform.translate( ( x -1 ) * image.getWidth( null ) / 2, ( y -1 ) * image.getHeight( null ) / 2 );
-		
+
 		Image newImage = gc.createCompatibleImage( image.getWidth( null ), image.getHeight( null ), Transparency.BITMASK );
-		
+
 		Graphics2D g = (Graphics2D) newImage.getGraphics();
 		g.drawImage( image, transform, null );
 		g.dispose();
-		
+
 		return newImage;
 	}
 }

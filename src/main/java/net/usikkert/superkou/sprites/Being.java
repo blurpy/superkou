@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,15 +24,15 @@ package net.usikkert.superkou.sprites;
 public abstract class Being extends Sprite
 {
 	public enum Direction { LEFT, RIGHT };
-	
+
 	private double xSpeed, ySpeed;
 	private boolean alive, ground, gravity;
 	private Direction direction;
-	
+
 	public Being( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		alive = true;
 		gravity = true;
 	}
@@ -66,12 +66,12 @@ public abstract class Being extends Sprite
 	{
 		this.ySpeed = ySpeed;
 	}
-	
+
 	public void collideX()
 	{
-		
+
 	}
-	
+
 	public void collideY()
 	{
 
@@ -86,13 +86,13 @@ public abstract class Being extends Sprite
 	{
 		this.ground = ground;
 	}
-	
+
 	public void die()
 	{
 		setAlive( false );
 		setXSpeed( 0.0 );
 	}
-	
+
 	public Direction getDirection()
 	{
 		return direction;
@@ -105,42 +105,42 @@ public abstract class Being extends Sprite
 
 	public void collidesWith( Cheese cheese )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Banana banana )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( QuestionBox qb )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Upgrade upgrade )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Spungy spungy )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Goompa goompa )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Fireball fireball )
 	{
-		
+
 	}
-	
+
 	public void collidesWith( Kou kou )
 	{
-		
+
 	}
 
 	public boolean isGravity()

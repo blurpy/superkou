@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -37,7 +37,7 @@ public class GameLoopThread extends Thread implements SecondListener
 	private ButtonHandler buttonHandler;
 	private int sleepTime;
 	private GamepadPollThread gamepadPoll;
-	
+
 	public GameLoopThread( GameWindow window, Settings settings )
 	{
 		engine = new GameEngine();
@@ -47,10 +47,10 @@ public class GameLoopThread extends Thread implements SecondListener
 		facade = new GameFacade( engine, window, settings, status, fpsCounter, gamepadPoll );
 		buttonHandler = new ButtonHandler( engine, facade.getGamepadConfig() );
 		gamepadPoll.addGamepadListener( buttonHandler );
-		
+
 		run = true;
 	}
-	
+
 	public void run()
 	{
 		gamepadPoll.start();
@@ -60,11 +60,11 @@ public class GameLoopThread extends Thread implements SecondListener
 		fpsCounter.init();
 		sleepTime = 8;
 		fpsCounter.addSecondListener( this );
-		
+
 		while ( run )
 		{
 			fpsCounter.update();
-			
+
 			if ( !pause )
 			{
 				BufferStrategy bufferStrategy = facade.getBufferStrategy();
@@ -74,12 +74,12 @@ public class GameLoopThread extends Thread implements SecondListener
 				{
 					engine.update( fpsCounter.getFPSTime() );
 					engine.draw( g );
-					
+
 					g.dispose();
 					bufferStrategy.show();
 				}
 			}
-			
+
 			try
 			{
 				if ( facade.getSettings().isCapFPS() )
@@ -87,13 +87,13 @@ public class GameLoopThread extends Thread implements SecondListener
 				else
 					sleep( 0 );
 			}
-			
+
 			catch ( InterruptedException e )
 			{
 				e.printStackTrace();
 			}
 		}
-		
+
 		gamepadPoll.stopGamepadPolling();
 		fpsCounter.removeSecondListener( this );
 		engine.cleanup();
@@ -110,18 +110,18 @@ public class GameLoopThread extends Thread implements SecondListener
 		pause = true;
 		fpsCounter.setPause( true );
 	}
-	
+
 	public void stopGameLoop()
 	{
 		run = false;
-		
+
 		while ( isAlive() )
 		{
 			try
 			{
 				sleep( 100 );
 			}
-			
+
 			catch ( InterruptedException e )
 			{
 				e.printStackTrace();
@@ -139,7 +139,7 @@ public class GameLoopThread extends Thread implements SecondListener
 				if ( sleepTime > 0 )
 					sleepTime--;
 			}
-			
+
 			else if ( fpsCounter.getFPS() > 100 )
 			{
 				sleepTime++;

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,16 +29,16 @@ public abstract class Sprite
 	private Animation animation;
 	private boolean visible, removable;
 	private Rectangle rectangle;
-	
+
 	public Sprite( int xPos, int yPos )
 	{
 		this.xPos = xPos;
 		this.yPos = yPos;
-		
+
 		visible = true;
 		rectangle = new Rectangle();
 	}
-	
+
 	public void update( long fpsTime )
 	{
 		animation.update( fpsTime );

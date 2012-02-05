@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,18 +29,18 @@ public class Banana extends Sprite
 	public Banana( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		Animation bananaAni = new Animation();
-		
+
 		Image image1 = Tools.getImage( "graphics/banana1.png" );
 		Image image2 = Tools.getImage( "graphics/banana2.png" );
 		Image image3 = Tools.getImage( "graphics/banana3.png" );
-		
+
 		bananaAni.addFrame( image1, 200 );
 		bananaAni.addFrame( image2, 200 );
 		bananaAni.addFrame( image3, 200 );
 		bananaAni.addFrame( image2, 200 );
-		
+
 		setAnimation( bananaAni );
 		getRectangle().setBounds( xPos, yPos, image1.getWidth( null ), image1.getHeight( null ) );
 	}

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,18 +32,18 @@ public class LevelMenuState implements State
 	private GameFacade facade;
 	private boolean pause;
 	private int fontSize;
-	
+
 	public LevelMenuState( GameFacade facade )
 	{
 		this.facade = facade;
 		fontSize = 28;
 		levelMenu = new GameMenu( "Level menu", fontSize, 0 );
-		
+
 		levelMenu.addGameMenuItem( new GameMenuItem( "Continue", true ) );
 		levelMenu.addGameMenuItem( new GameMenuItem( "Options", false ) );
 		levelMenu.addGameMenuItem( new GameMenuItem( "Quit", false ) );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "LevelMenuState.cleanup()" );
@@ -66,38 +66,38 @@ public class LevelMenuState implements State
 		{
 			levelMenu.selectUp();
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.DOWN )
 		{
 			levelMenu.selectDown();
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.ACTION )
 		{
 			String item = levelMenu.getSelectedMenuItemName();
-			
+
 			if ( item.equals( "Continue" ) )
 			{
 				facade.popState();
 			}
-			
+
 			else if ( item.equals( "Options" ) )
 			{
 				facade.pushState( new OptionsMenuState( facade, fontSize, 0 ) );
 			}
-			
+
 			else if ( item.equals( "Quit" ) )
 			{
 				facade.changeState( new MainScreenState( facade ) );
 			}
 		}
-		
+
 		else if ( e.getButton() == ButtonEvent.Button.MENU )
 		{
 			facade.popState();
 		}
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 
@@ -106,14 +106,14 @@ public class LevelMenuState implements State
 	public void pause()
 	{
 		System.out.println( "LevelMenuState.pause()" );
-		
+
 		pause = true;
 	}
 
 	public void resume()
 	{
 		System.out.println( "LevelMenuState.resume()" );
-		
+
 		pause = false;
 	}
 

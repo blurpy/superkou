@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,15 +24,15 @@ package net.usikkert.superkou;
 public class Status
 {
 	public enum State { SMALL, LARGE, CRAZY };
-	
+
 	private State state;
 	private int lives, cheese, enemies, score, level, nextLevel, levelTime;
-	
+
 	public Status()
 	{
 		resetStatus();
 	}
-	
+
 	public void resetStatus()
 	{
 		state = State.SMALL;
@@ -49,27 +49,27 @@ public class Status
 	{
 		return cheese;
 	}
-	
+
 	public void setCheese( int cheese )
 	{
 		this.cheese = cheese;
 	}
-	
+
 	public void incCheese()
 	{
 		cheese++;
 	}
-	
+
 	public int getScore()
 	{
 		return score;
 	}
-	
+
 	public void setScore( int score )
 	{
 		this.score = score;
 	}
-	
+
 	public int getEnemies()
 	{
 		return enemies;
@@ -84,48 +84,48 @@ public class Status
 	{
 		enemies++;
 	}
-	
+
 	public int getLevel()
 	{
 		return level;
 	}
-	
+
 	public void setLevel( int level )
 	{
 		this.level = level;
 	}
-	
+
 	public void incLevel()
 	{
 		level++;
 	}
-	
+
 	public int getLives()
 	{
 		return lives;
 	}
-	
+
 	public void setLives( int lives )
 	{
 		this.lives = lives;
 	}
-	
+
 	public void incLives()
 	{
 		lives++;
 	}
-	
+
 	public void decLives()
 	{
 		if ( lives > 0 )
 			lives--;
 	}
-	
+
 	public State getState()
 	{
 		return state;
 	}
-	
+
 	public void setState( State state )
 	{
 		this.state = state;
@@ -156,7 +156,7 @@ public class Status
 	{
 		this.nextLevel = nextLevel;
 	}
-	
+
 	public void incNextLevel()
 	{
 		nextLevel++;

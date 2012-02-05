@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -26,7 +26,7 @@ public class Fireball extends Being
 	public Fireball( int xPos, int yPos, Animation animation )
 	{
 		super( xPos, yPos );
-		
+
 		setAnimation( animation );
 		getRectangle().setBounds( getXPos(), getYPos(), getWidth(), getHeight() );
 	}

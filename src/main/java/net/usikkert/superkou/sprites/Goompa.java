@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,7 +31,7 @@ public class Goompa extends Enemy
 	public Goompa( int xPos, int yPos )
 	{
 		super( xPos, yPos );
-		
+
 		jumpAni = new Animation();
 		deadAni = new Animation();
 
@@ -45,7 +45,7 @@ public class Goompa extends Enemy
 
 		Image imageDead = Tools.transformImage( imageUp, 1, -1 );
 		deadAni.addFrame( imageDead, 10000 );
-		
+
 		setAnimation( jumpAni );
 		getRectangle().setBounds( getXPos(), getYPos(), getWidth(), getHeight() );
 	}
@@ -55,24 +55,24 @@ public class Goompa extends Enemy
 	{
 		setXSpeed( getXSpeed() * -1 );
 	}
-	
+
 	@Override
 	public void collideY()
 	{
 		if ( isAlive() )
 			setYSpeed( -0.8 );
 	}
-	
+
 	@Override
 	public void update( long fpsTime )
 	{
 		super.update( fpsTime );
-		
+
 		if ( isAlive() )
 			setAnimation( jumpAni );
 		else
 			setAnimation( deadAni );
-		
+
 		getRectangle().setBounds( getXPos() +3, getYPos(), getWidth() -6, getHeight() );
 	}
 

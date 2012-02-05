@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -31,14 +31,14 @@ public class NewGameState implements State
 	private GameFacade facade;
 	private boolean done, pause;
 	private int offsetY;
-	
+
 	public NewGameState( GameFacade facade, int offsetY )
 	{
 		this.facade = facade;
 		this.offsetY = offsetY;
 		pause = true;
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "NewGameState.cleanup()" );
@@ -56,7 +56,7 @@ public class NewGameState implements State
 				g.drawString( "LOADING", Constants.WINDOW_WIDTH / 2 -20, Constants.WINDOW_HEIGHT / 2 );
 				done = true;
 			}
-			
+
 			else
 				facade.changeState( new LevelState( facade ) );
 		}
@@ -65,13 +65,13 @@ public class NewGameState implements State
 	public void init()
 	{
 		System.out.println( "NewGameState.init()" );
-		
+
 		String msg = "You are Super Kou, 1337 Special";
 		msg += "\nCow Forces soldier. Your objective";
 		msg += "\nis to find the bananas that was";
 		msg += "\nstolen from the world's secret";
 		msg += "\nbanana storage facility.";
-		
+
 		facade.pushState( new MessageState( facade, msg, 24, offsetY ) );
 	}
 
@@ -79,7 +79,7 @@ public class NewGameState implements State
 	{
 
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 
@@ -88,14 +88,14 @@ public class NewGameState implements State
 	public void pause()
 	{
 		System.out.println( "NewGameState.pause()" );
-		
+
 		pause = true;
 	}
 
 	public void resume()
 	{
 		System.out.println( "NewGameState.resume()" );
-		
+
 		pause = false;
 	}
 

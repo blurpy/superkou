@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -32,14 +32,14 @@ public class ErrorState implements State
 	private GameFacade facade;
 	private MessageBox msgBox;
 	private String error;
-	
+
 	public ErrorState( GameFacade facade, String error )
 	{
 		this.facade = facade;
 		this.error = error;
 		msgBox = new MessageBox();
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "ErrorState.cleanup()" );

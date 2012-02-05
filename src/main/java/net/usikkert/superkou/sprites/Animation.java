@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -29,45 +29,45 @@ public class Animation
 	private ArrayList<Frame> frames;
 	private int activeFrameNr;
 	private long animationLength, animationTime;
-	
+
 	public Animation()
 	{
 		frames = new ArrayList<Frame>();
 	}
-	
+
 	private Animation( ArrayList<Frame> frames, long animationLength )
 	{
 		this.frames = frames;
 		this.animationLength = animationLength;
 	}
-	
+
 	public void addFrame( Image frame, long frameDelay )
 	{
 		animationLength += frameDelay;
 		frames.add( new Frame( frame, animationLength ) );
 	}
-	
+
 	public Image getFrame()
 	{
 		return frames.get( activeFrameNr ).frame;
 	}
-	
+
 	public void update( long fpsTime )
 	{
 		animationTime += fpsTime;
-		
+
 		if ( animationTime >= animationLength )
 		{
 			animationTime = animationTime % animationLength;
 			activeFrameNr = 0;
 		}
-		
+
 		while ( animationTime > frames.get( activeFrameNr ).animationDoneTime )
 		{
 			activeFrameNr++;
 		}
 	}
-	
+
 	@Override
 	protected Animation clone()
 	{
@@ -78,7 +78,7 @@ public class Animation
 	{
 		private Image frame;
 		private long animationDoneTime;
-		
+
 		public Frame( Image frame, long animationDoneTime )
 		{
 			this.frame = frame;

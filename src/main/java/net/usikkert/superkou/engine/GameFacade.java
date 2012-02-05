@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -36,7 +36,7 @@ public class GameFacade
 	private FPSCounter fpsCounter;
 	private GamepadConfig gpConf;
 	private GamepadPollThread gamepadPoll;
-	
+
 	public GameFacade( GameEngine engine, GameWindow window, Settings settings, Status status, FPSCounter fpsCounter, GamepadPollThread gamepadPoll )
 	{
 		this.engine = engine;
@@ -47,37 +47,37 @@ public class GameFacade
 		this.gamepadPoll = gamepadPoll;
 		gpConf = new GamepadConfig();
 	}
-	
+
 	public void changeState( State newState )
 	{
 		engine.changeState( newState );
 	}
-	
+
 	public void pushState( State newState )
 	{
 		engine.pushState( newState );
 	}
-	
+
 	public void popState()
 	{
 		engine.popState();
 	}
-	
+
 	public BufferStrategy getBufferStrategy()
 	{
 		return window.getBufferStrategy();
 	}
-	
+
 	public boolean setWindowedMode()
 	{
 		return window.setWindowedMode();
 	}
-	
+
 	public boolean setFullScreenMode()
 	{
 		return window.setFullScreenMode();
 	}
-	
+
 	public Settings getSettings()
 	{
 		return settings;
@@ -97,7 +97,7 @@ public class GameFacade
 	{
 		return gpConf;
 	}
-	
+
 	public boolean isGamepadDetected()
 	{
 		return gamepadPoll.isGamepadDetected();

@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -30,13 +30,13 @@ public class GameOverState implements State
 {
 	private Image gameOverImage;
 	private GameFacade facade;
-	
+
 	public GameOverState( GameFacade facade )
 	{
 		this.facade = facade;
 		gameOverImage = Tools.getImage( "graphics/gameover.png" );
 	}
-	
+
 	public void cleanup()
 	{
 		System.out.println( "GameOverState.cleanup()" );
@@ -59,7 +59,7 @@ public class GameOverState implements State
 			facade.changeState( new MainScreenState( facade ) );
 		}
 	}
-	
+
 	public void buttonReleased( ButtonEvent e )
 	{
 

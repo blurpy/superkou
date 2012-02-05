@@ -1,6 +1,6 @@
 
 /***************************************************************************
- *   Copyright 2005-2007 by Christian Ihle                                 *
+ *   Copyright 2005-2012 by Christian Ihle                                 *
  *   kontakt@usikkert.net                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -33,7 +33,7 @@ public class Level
 	private String name;
 	private Kou kou;
 	private List<Sprite> sprites;
-	
+
 	public Level()
 	{
 		sprites = new ArrayList<Sprite>();
@@ -43,7 +43,7 @@ public class Level
 	{
 		return background;
 	}
-	
+
 	public void setBackground( Image background )
 	{
 		this.background = background;
@@ -56,7 +56,7 @@ public class Level
 		else
 			return tiles[y][x];
 	}
-	
+
 	public void setTiles( Image[][] tiles )
 	{
 		this.tiles = tiles;
@@ -81,17 +81,17 @@ public class Level
 	{
 		this.time = time;
 	}
-	
+
 	public int getWidth()
 	{
 		return tiles[0].length;
 	}
-	
+
 	public int getWidth( int y )
 	{
 		return tiles[y].length;
 	}
-	
+
 	public int getHeight()
 	{
 		return tiles.length;
@@ -106,12 +106,12 @@ public class Level
 	{
 		this.kou = kou;
 	}
-	
+
 	public void addSprite( Sprite sprite )
 	{
 		sprites.add( sprite );
 	}
-	
+
 	public ListIterator<Sprite> getSprites()
 	{
 		return sprites.listIterator();
