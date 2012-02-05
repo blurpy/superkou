@@ -1,16 +1,15 @@
 
-# How to compile and run Super Kou v0.6.0
+- INSTALL
 
-Super Kou needs J2SE Development Kit 5 (1.5) or newer to build and run.
-It also depends on the external library JInput for gamepad support.
-JInput can be downloaded seperately from http://jinput.dev.java.net/.
-The version used during development was jinput_combined_dist_20070726.zip,
-but any newer version will probably work too.
+Super Kou needs J2SE Development Kit 5 (1.5) or newer.
 
-Step by step guide:
-1. Extract the contents of superkou-0.6.0-src.tar.gz somewhere.
-2. Go into the folder you just created, and extract the contents of the JInput archive you downloaded there.
-3. Compile with the command "javac -cp .:dist/jinput.jar net/usikkert/superkou/Main.java". Replace "dist" with whatever folder jinput.jar is located in.
-4. Run Super Kou with the command "java -Djava.library.path=.:dist -cp .:dist/jinput.jar net.usikkert.superkou.Main".
+The recommended way to build is by using Maven.
+If you don't have Maven, download from http://maven.apache.org/
 
-If you are on Windows, you might need to replace ":" with ";", and "/" with "\" for the commands to work.
+To compile, stay in the root folder where pom.xml is, and run:
+'mvn clean package'
+
+You need to tell Java where to find the native libraries if you are going to play using a gamepad.
+Add the following vm parameter: -Djava.library.path=target/natives
+
+Have fun! :)
