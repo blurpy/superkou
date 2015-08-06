@@ -1,5 +1,5 @@
 
-## Super Kou v0.7.0
+## Super Kou
 
 Join Super Kou on a fun adventure to save the world!
 
