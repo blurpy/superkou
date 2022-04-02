@@ -3,9 +3,7 @@
 
 Join Super Kou on a fun adventure to save the world!
 
-<a href="http://www.usikkert.net/progs/superkou/superkou.jnlp"><img src="http://blurpy.googlepages.com/jws-launch-button.png"></a>
-
-<img src="http://blurpy.googlepages.com/superkou-0.6.0-java.png">
+![Screenshot](resources/screenshot.png)
 
 Copyright 2005-2012  
 Christian Ihle
